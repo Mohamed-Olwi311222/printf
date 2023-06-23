@@ -30,8 +30,9 @@ int printf_char(va_list vars)
  */
 int printf_percent(va_list vars)
 {
-	_putchar(37);
-	return (1);
+	(void) vars;
+
+	return (_putchar('%'));
 }
 /**
  * printf_string - writes a string to stdout

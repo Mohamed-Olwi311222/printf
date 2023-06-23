@@ -8,8 +8,9 @@ int _printf(const char *const format, ...)
 {
 	type m[] = {
 		{"%s", printf_string},
-		{"%s", printf_char},
+		{"%c", printf_char},
 		{"%%", printf_percent},
+		{NULL, NULL}
 	};
 	va_list arg;
 	int i = 0, count = 0, j = 0;
@@ -19,7 +20,7 @@ int _printf(const char *const format, ...)
 	va_start(arg, format);
 	while (format[i])
 	{
-		while (m[j].form[0] == format[i] && m[j].form[1] == format[i + 1])
+		while (format[i] == m[j].form[0] && format[i + 1] == m[j].form[1])
 		{
 			count += m[j].f(arg);
 			i += 2;
