@@ -16,11 +16,8 @@ int _putchar(char c)
  */
 int printf_char(va_list vars)
 {
-	char c;
-
-	c = va_arg(vars, int);
-	_putchar(c);
-	return (1);
+	
+	return (_putchar((char)va_arg(vars, int)));
 }
 
 /**
