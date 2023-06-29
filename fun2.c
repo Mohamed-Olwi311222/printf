@@ -12,7 +12,7 @@ double my_log(double x)
 
 	if (x <= 0.0)
 	{
-		return NAN;
+		return (NAN);
 	}
 
 	for (i = 0; i < 100; i++)
