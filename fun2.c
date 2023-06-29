@@ -1,4 +1,5 @@
 #include "main.h"
+#include <math.h>
 /**
  * print_int - prints an int
  * @vars: variable to hold an int
@@ -6,8 +7,9 @@
  */
 int print_int(va_list vars)
 {
-	char str[30];
+	char *str;
 	int num = va_arg(vars, int), count = 0, i;
+	int size = (int) log10(abs(num));
 
 	if (num < 0)
 		count += _putchar('-');
@@ -16,12 +18,18 @@ int print_int(va_list vars)
 	 * in 2nd line 12345 => 1234
 	 * and repeates
 	 */
+	str = malloc(1 + size);
+	if (str == NULL)
+		return (0);
+
 	do {
 		str[count++] = num % 10 + '0';
 		num /= 10;
 	} while (num != 0);
+
 	for (i = count - 1; i >= 0; i--)
 		_putchar(str[i]);
+	free(str);
 	return (count);
 }
 /**
@@ -31,9 +39,9 @@ int print_int(va_list vars)
  */
 int print_double(va_list vars)
 {
-	char str_int[17];
-	double num = va_arg(vars, double), decimal;
+	double num = va_arg(vars, double), decimal, size;
 	int count = 0, i, digit, int_part;
+	char *str_int;
 
 	if (num < 0)
 	{
@@ -42,6 +50,11 @@ int print_double(va_list vars)
 	}
 
 	int_part = (int) num;
+	size = log10(abs(int_part));
+	str_int = malloc(1 + size);
+	if (str_int == NULL)
+		return (0);
+
 	do {
 		str_int[count++] = int_part % 10 + '0';
 		int_part /= 10;
@@ -61,6 +74,7 @@ int print_double(va_list vars)
 		count += _putchar('0' + digit);
 		decimal -= digit;
 	}
+	free(str_int);
 	return (count);
 
 }
