@@ -21,6 +21,7 @@ typedef struct type
 int printf_string(va_list vars);
 int printf_char(va_list vars);
 int printf_percent(va_list vars);
+int print_int(va_list vars);
 int _putchar(char c);
 int _printf(const char *format, ...);
 #endif

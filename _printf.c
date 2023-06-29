@@ -10,6 +10,7 @@ int _printf(const char *const format, ...)
 		{"%s", printf_string},
 		{"%c", printf_char},
 		{"%%", printf_percent},
+		{"%i", print_int},
 		{NULL, NULL}
 	};
 	va_list arg;
@@ -20,11 +21,14 @@ int _printf(const char *const format, ...)
 	va_start(arg, format);
 	while (format[i])
 	{
-		while (format[i] == m[j].form[0] && format[i + 1] == m[j].form[1])
+		while (format[i] == '%')
 		{
+			if (format[i + 1] == m[j].form[1])
+			{
 			count += m[j].f(arg);
 			i += 2;
-			break;
+			}
+			j++;
 		}
 		count += _putchar(format[i]);
 		i++;
